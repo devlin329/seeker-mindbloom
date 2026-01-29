@@ -8,4 +8,4 @@
 
 3. **Usage**: Under the MIT License, users are free to use, copy, and modify the software, provided the original copyright notice is retained.
 
-4. **Assets**: The App icon, logo, and UI elements are original creations or properly licensed for this project.
+4. **Assets**: The App icon, logo, and UI elements are original creations or properly licensed for this project. The app is designed and optimized for Solana Seeker phone.
