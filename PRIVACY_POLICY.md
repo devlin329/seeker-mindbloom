@@ -8,7 +8,7 @@ MindBloom is committed to protecting user privacy. This policy explains our stan
 
 - **Personal Information**: MindBloom does not collect names, email addresses, phone numbers, or device IDs.
 - **Crypto Wallet**: We integrate with third-party wallet applications (e.g., Phantom and other Solana Mobile Wallet Adapter–compliant wallets) to allow users to connect their Solana wallets.
-- **Public Address**: We collect and process your public wallet address solely for authentication and to enable game features (such as submitting scores and viewing the leaderboard).
+- **Public Address**: We collect and process your public wallet address solely for authentication and to enable game features (such as submitting scores and viewing the local leaderboard; a global leaderboard is a planned future feature).
 - **Private Keys**: We **never** access, collect, or store your private keys or seed phrases. All transaction signatures are performed securely within your external wallet application.
 - **On-Chain Data**: Certain interactions (such as score submissions) may be recorded publicly on the Solana blockchain via the SPL Memo program.
 
@@ -32,4 +32,4 @@ We may update this Privacy Policy from time to time. We will post the revised po
 
 ## 6. Contact
 
-For questions about this Privacy Policy or data practices, please contact us at: **[dev.charleslin@gmail.com]**
+For questions about this Privacy Policy or data practices, please contact us at: dev.charleslin@gmail.com
