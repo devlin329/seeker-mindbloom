@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindBloom Sudoku - Play & Earn on Solana</title>
-    <meta name="description" content="Challenge your mind with MindBloom Sudoku. Record your best scores on the Solana blockchain.">
+    <title>MindBloom Sudoku - Play & Record on Solana</title>
+    <meta name="description" content="Challenge your mind with MindBloom Sudoku. Record your best scores on the Solana blockchain. Available on Solana Seeker.">
+    <meta property="og:title" content="MindBloom Sudoku - Play & Record on Solana">
+    <meta property="og:description" content="Challenge your mind. Record on chain. Sudoku with on-chain scores, built for Solana Seeker.">
+    <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
@@ -175,6 +178,18 @@
             box-shadow: 0 12px 40px rgba(153, 69, 255, 0.5);
         }
 
+        .trust-line {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 8px 0 4px;
+        }
+
+        .extra-features {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 16px;
+        }
+
         /* Legal links */
         .legal-links {
             display: flex;
@@ -225,6 +240,21 @@
             height: 20px;
         }
 
+        .footer-links {
+            margin-bottom: 12px;
+        }
+
+        .contact-link {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-link:hover {
+            color: #14F195;
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             .logo-text { font-size: 36px; }
@@ -247,35 +277,39 @@
             <div class="feature">
                 <div class="feature-icon">🎮</div>
                 <div class="feature-title">Play Sudoku</div>
-                <div class="feature-desc">Three difficulty levels to challenge yourself</div>
+                <div class="feature-desc">Easy / Medium / Hard — three difficulty levels to challenge yourself</div>
             </div>
             <div class="feature">
                 <div class="feature-icon">⛓️</div>
                 <div class="feature-title">On-Chain Records</div>
-                <div class="feature-desc">Your best scores stored on Solana blockchain</div>
+                <div class="feature-desc">Your best scores stored permanently on Solana via SPL Memo</div>
             </div>
             <div class="feature">
                 <div class="feature-icon">🏆</div>
                 <div class="feature-title">Leaderboard</div>
-                <div class="feature-desc">Compete with players worldwide</div>
+                <div class="feature-desc">Local leaderboard now; global leaderboard coming soon</div>
             </div>
         </div>
 
         <div class="cta-section">
-            <div class="badge">Built on Solana</div>
-            <br><br>
-            <a href="#" class="download-btn">
-                <span>📱</span> Download App
+            <div class="badge">Built on Solana · Available on Solana Seeker</div>
+            <p class="trust-line">Privacy-first. No tracking.</p>
+            <p class="extra-features">Dark/Light theme · Full-screen on Seeker</p>
+            <a href="#" class="download-btn" aria-label="Download on Seeker Store">
+                <span>📱</span> Coming to Seeker Store
             </a>
         </div>
 
         <nav class="legal-links" aria-label="Legal">
-            <a href="COPYRIGHT.md">© Copyright</a>
-            <a href="LICENSE.md">License</a>
-            <a href="PRIVACY_POLICY.md">Privacy Policy</a>
+            <a href="COPYRIGHT.md" target="_blank" rel="noopener noreferrer">© Copyright</a>
+            <a href="LICENSE.md" target="_blank" rel="noopener noreferrer">License</a>
+            <a href="PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
         </nav>
 
         <div class="footer">
+            <div class="footer-links">
+                <a href="mailto:dev.charleslin@gmail.com" class="contact-link">Contact</a>
+            </div>
             <div class="solana-badge">
                 <svg viewBox="0 0 397.7 311.7" fill="currentColor">
                     <path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z"/>
