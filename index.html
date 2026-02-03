@@ -37,6 +37,7 @@
             background: radial-gradient(circle, rgba(153, 69, 255, 0.15) 0%, transparent 70%);
             pointer-events: none;
             animation: pulse 4s ease-in-out infinite;
+            z-index: 0;
         }
 
         @keyframes pulse {
@@ -45,7 +46,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 60px 24px;
             text-align: center;
@@ -55,7 +56,7 @@
 
         /* Logo area */
         .logo-section {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .logo-icon {
@@ -86,15 +87,45 @@
             font-weight: 400;
         }
 
-        /* Features */
-        .features {
+        .version-badge {
+            display: inline-block;
+            background: rgba(20, 241, 149, 0.1);
+            border: 1px solid rgba(20, 241, 149, 0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #14F195;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* Section headers */
+        .section-header {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 60px 0 30px;
+            background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: -20px;
+            margin-bottom: 40px;
+        }
+
+        /* Hero Features */
+        .hero-features {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             margin: 50px 0;
         }
 
-        .feature {
+        .hero-feature {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(153, 69, 255, 0.2);
             border-radius: 16px;
@@ -102,33 +133,161 @@
             transition: all 0.3s ease;
         }
 
-        .feature:hover {
+        .hero-feature:hover {
             background: rgba(153, 69, 255, 0.1);
             border-color: rgba(153, 69, 255, 0.4);
             transform: translateY(-4px);
         }
 
-        .feature-icon {
+        .hero-feature-icon {
             font-size: 36px;
             margin-bottom: 12px;
         }
 
-        .feature-title {
+        .hero-feature-title {
             font-size: 16px;
             font-weight: 600;
             color: #fff;
             margin-bottom: 6px;
         }
 
-        .feature-desc {
+        .hero-feature-desc {
             font-size: 13px;
             color: rgba(255, 255, 255, 0.5);
             line-height: 1.4;
         }
 
+        /* Detailed Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(153, 69, 255, 0.3);
+            transform: translateX(4px);
+        }
+
+        .feature-item-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .feature-item-icon {
+            font-size: 24px;
+        }
+
+        .feature-item-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .feature-item-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+            margin-left: 36px;
+        }
+
+        .feature-tag {
+            display: inline-block;
+            background: rgba(153, 69, 255, 0.2);
+            color: #9945FF;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        /* Roadmap */
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .roadmap-phase {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .roadmap-phase:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(153, 69, 255, 0.3);
+        }
+
+        .roadmap-phase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .roadmap-phase-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .roadmap-phase-badge {
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .badge-next { background: rgba(255, 215, 0, 0.2); color: #FFD700; }
+        .badge-future { background: rgba(153, 69, 255, 0.2); color: #9945FF; }
+        .badge-vision { background: rgba(20, 241, 149, 0.2); color: #14F195; }
+
+        .roadmap-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .roadmap-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        .roadmap-feature::before {
+            content: '✓';
+            color: #14F195;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
         /* CTA */
         .cta-section {
-            margin-top: 40px;
+            margin: 60px 0 40px;
         }
 
         .badge {
@@ -222,22 +381,9 @@
 
         /* Footer */
         .footer {
-            margin-top: 40px;
+            margin-top: 60px;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .solana-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 14px;
-        }
-
-        .solana-badge svg {
-            width: 20px;
-            height: 20px;
         }
 
         .footer-links {
@@ -255,60 +401,229 @@
             color: #14F195;
         }
 
+        .solana-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+        }
+
+        .solana-badge svg {
+            width: 20px;
+            height: 20px;
+        }
+
         /* Responsive */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .logo-text { font-size: 36px; }
-            .features { grid-template-columns: 1fr; }
+            .hero-features { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .roadmap-features { grid-template-columns: 1fr; }
             .container { padding: 40px 20px; }
+            .section-header { font-size: 28px; }
         }
     </style>
 </head>
 <body>
     <div class="bg-glow"></div>
-    
+
     <div class="container">
+        <!-- Hero Section -->
         <div class="logo-section">
             <div class="logo-icon">🧩</div>
             <h1 class="logo-text">MindBloom</h1>
             <p class="tagline">Challenge Your Mind. Record on Chain.</p>
+            <div class="version-badge">v1.0.1 - Statistics & Progression Update</div>
         </div>
 
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">🎮</div>
-                <div class="feature-title">Play Sudoku</div>
-                <div class="feature-desc">Easy / Medium / Hard — three difficulty levels with smart hint system</div>
+        <!-- Hero Features -->
+        <div class="hero-features">
+            <div class="hero-feature">
+                <div class="hero-feature-icon">🎮</div>
+                <div class="hero-feature-title">Play Sudoku</div>
+                <div class="hero-feature-desc">Easy / Medium / Hard — three difficulty levels with smart hint system</div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <div class="feature-title">Track Progress</div>
-                <div class="feature-desc">Comprehensive statistics, win streaks, and performance analytics per difficulty</div>
+            <div class="hero-feature">
+                <div class="hero-feature-icon">📊</div>
+                <div class="hero-feature-title">Track Progress</div>
+                <div class="hero-feature-desc">Comprehensive statistics, win streaks, and performance analytics per difficulty</div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">⛓️</div>
-                <div class="feature-title">On-Chain Records</div>
-                <div class="feature-desc">Your best scores stored permanently on Solana via SPL Memo</div>
+            <div class="hero-feature">
+                <div class="hero-feature-icon">⛓️</div>
+                <div class="hero-feature-title">On-Chain Records</div>
+                <div class="hero-feature-desc">Your best scores stored permanently on Solana via SPL Memo</div>
             </div>
         </div>
 
+        <!-- Current Features -->
+        <h2 class="section-header">🎯 Current Features (v1.0.1)</h2>
+        <p class="section-subtitle">Everything available in the latest release</p>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-item-header">
+                    <span class="feature-item-icon">🧩</span>
+                    <span class="feature-item-title">Classic Sudoku Gameplay</span>
+                </div>
+                <div class="feature-item-desc">
+                    Three difficulty levels with perfectly balanced puzzles. Easy (30-40 cells), Medium (40-50), Hard (50-60).
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-item-header">
+                    <span class="feature-item-icon">📈</span>
+                    <span class="feature-item-title">Statistics Tracking</span>
+                    <span class="feature-tag">NEW</span>
+                </div>
+                <div class="feature-item-desc">
+                    Complete stats system with total games, win rate, average time, and detailed per-difficulty analytics.
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-item-header">
+                    <span class="feature-item-icon">🔥</span>
+                    <span class="feature-item-title">Win Streak System</span>
+                    <span class="feature-tag">NEW</span>
+                </div>
+                <div class="feature-item-desc">
+                    Track current and best streaks for each difficulty. Leaving mid-game resets your streak!
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-item-header">
+                    <span class="feature-item-icon">💡</span>
+                    <span class="feature-item-title">Smart Hint System</span>
+                </div>
+                <div class="feature-item-desc">
+                    Stakers get 1-3 hints per difficulty: Auto Fill, Solve 3×3 Region, or Error Check.
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-item-header">
+                    <span class="feature-item-icon">🏆</span>
+                    <span class="feature-item-title">Local Leaderboard</span>
+                </div>
+                <div class="feature-item-desc">
+                    View all your records by difficulty with timestamps, times, and hint usage tracking.
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-item-header">
+                    <span class="feature-item-icon">⛓️</span>
+                    <span class="feature-item-title">Blockchain Recording</span>
+                </div>
+                <div class="feature-item-desc">
+                    Upload your best scores to Solana via SPL Memo program. Permanent, verifiable records.
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-item-header">
+                    <span class="feature-item-icon">👛</span>
+                    <span class="feature-item-title">Wallet Integration</span>
+                </div>
+                <div class="feature-item-desc">
+                    Mobile Wallet Adapter support for Phantom, Solflare, and other Solana wallets.
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-item-header">
+                    <span class="feature-item-icon">🎨</span>
+                    <span class="feature-item-title">Dark/Light Themes</span>
+                </div>
+                <div class="feature-item-desc">
+                    Beautiful UI with theme toggle. Optimized for Seeker's OLED display.
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-item-header">
+                    <span class="feature-item-icon">📱</span>
+                    <span class="feature-item-title">Share Scores</span>
+                </div>
+                <div class="feature-item-desc">
+                    Generate beautiful score cards and share your achievements with friends.
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-item-header">
+                    <span class="feature-item-icon">🔒</span>
+                    <span class="feature-item-title">Privacy First</span>
+                </div>
+                <div class="feature-item-desc">
+                    No tracking, no ads, no data collection. All stats stored locally on your device.
+                </div>
+            </div>
+        </div>
+
+        <!-- Roadmap -->
+        <h2 class="section-header">🚀 Roadmap</h2>
+        <p class="section-subtitle">What's coming next for MindBloom</p>
+
+        <div class="roadmap-grid">
+            <!-- v1.1.0 -->
+            <div class="roadmap-phase">
+                <div class="roadmap-phase-header">
+                    <div class="roadmap-phase-title">v1.1.0 - Enhanced Gameplay</div>
+                    <span class="roadmap-phase-badge badge-next">NEXT</span>
+                </div>
+                <div class="roadmap-features">
+                    <div class="roadmap-feature">Note-taking mode for candidate numbers</div>
+                    <div class="roadmap-feature">Undo/Redo functionality</div>
+                    <div class="roadmap-feature">Auto-save game progress</div>
+                    <div class="roadmap-feature">Expert difficulty level</div>
+                    <div class="roadmap-feature">Daily challenge mode</div>
+                    <div class="roadmap-feature">Tutorial for new players</div>
+                </div>
+            </div>
+
+            <!-- v1.2.0 -->
+            <div class="roadmap-phase">
+                <div class="roadmap-phase-header">
+                    <div class="roadmap-phase-title">v1.2.0 - Social Features</div>
+                    <span class="roadmap-phase-badge badge-future">PLANNED</span>
+                </div>
+                <div class="roadmap-features">
+                    <div class="roadmap-feature">Global leaderboard (backend service)</div>
+                    <div class="roadmap-feature">Friend system & challenges</div>
+                    <div class="roadmap-feature">Score comparison tools</div>
+                    <div class="roadmap-feature">Achievement badges</div>
+                    <div class="roadmap-feature">Multi-language support</div>
+                    <div class="roadmap-feature">Tournament mode</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
         <div class="cta-section">
-            <div class="badge">Built on Solana · v1.0.1 Available on Solana Seeker</div>
-            <p class="trust-line">Privacy-first. No tracking.</p>
-            <p class="extra-features">Statistics & Streaks · Hint System · Dark/Light theme</p>
+            <div class="badge">Built on Solana · Available on Solana Seeker</div>
+            <p class="trust-line">Privacy-first. No tracking. Open source MIT license.</p>
+            <p class="extra-features">Statistics & Streaks · Hint System · Dark/Light theme · Share Scores</p>
             <a href="#" class="download-btn" aria-label="Download on Seeker Store">
                 <span>📱</span> Coming to Seeker Store
             </a>
         </div>
 
+        <!-- Legal Links -->
         <nav class="legal-links" aria-label="Legal">
             <a href="COPYRIGHT.md" target="_blank" rel="noopener noreferrer">© Copyright</a>
-            <a href="LICENSE.md" target="_blank" rel="noopener noreferrer">License</a>
+            <a href="LICENSE.md" target="_blank" rel="noopener noreferrer">MIT License</a>
             <a href="PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            <a href="https://github.com/devlin329/seeker-mindbloom" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
 
+        <!-- Footer -->
         <div class="footer">
             <div class="footer-links">
-                <a href="mailto:dev.charleslin@gmail.com" class="contact-link">Contact</a>
+                <a href="mailto:dev.charleslin@gmail.com" class="contact-link">Contact: dev.charleslin@gmail.com</a>
             </div>
             <div class="solana-badge">
                 <svg viewBox="0 0 397.7 311.7" fill="currentColor">
