@@ -1,639 +1,841 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindBloom Sudoku - Play & Record on Solana</title>
-    <meta name="description" content="Challenge your mind with MindBloom Sudoku. Record your best scores on the Solana blockchain. Available on Solana Seeker.">
-    <meta property="og:title" content="MindBloom Sudoku - Play & Record on Solana">
-    <meta property="og:description" content="Challenge your mind. Record on chain. Sudoku with on-chain scores, built for Solana Seeker.">
-    <meta property="og:type" content="website">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindBloom - Train Your Brain on Chain | Solana Sudoku</title>
+  <meta name="description" content="MindBloom is a Sudoku game built on Solana blockchain. Record your scores on-chain permanently, compete with $SKR stakers, and train your brain on the Seeker device.">
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #0a0a1a 100%);
-            min-height: 100vh;
-            color: #fff;
-            overflow-x: hidden;
-        }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        /* Animated background */
-        .bg-glow {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(153, 69, 255, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-            animation: pulse 4s ease-in-out infinite;
-            z-index: 0;
-        }
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwindcss.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#9945FF',
+            secondary: '#14F195',
+            accent: '#00D1FF',
+            warning: '#FFD93D',
+            danger: '#FF6B6B',
+            dark: '#0D0D0D',
+            'dark-card': '#1A1A1A',
+            'dark-border': '#2A2A2A',
+          },
+          fontFamily: {
+            heading: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
-        }
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 24px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
+    body {
+      background: #0D0D0D;
+    }
 
-        /* Logo area */
-        .logo-section {
-            margin-bottom: 50px;
-        }
+    .gradient-text {
+      background: linear-gradient(135deg, #9945FF 0%, #14F195 50%, #00D1FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        .logo-icon {
-            font-size: 80px;
-            margin-bottom: 16px;
-            animation: float 3s ease-in-out infinite;
-        }
+    .gradient-border {
+      background: linear-gradient(135deg, #9945FF, #14F195);
+      padding: 2px;
+      border-radius: 1rem;
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+    .gradient-border-inner {
+      background: #1A1A1A;
+      border-radius: calc(1rem - 2px);
+    }
 
-        .logo-text {
-            font-size: 48px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #9945FF, #14F195);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -1px;
-        }
+    .glow-primary {
+      box-shadow: 0 0 40px rgba(153, 69, 255, 0.3);
+    }
 
-        .tagline {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 12px;
-            font-weight: 400;
-        }
+    .glow-secondary {
+      box-shadow: 0 0 40px rgba(20, 241, 149, 0.2);
+    }
 
-        .version-badge {
-            display: inline-block;
-            background: rgba(20, 241, 149, 0.1);
-            border: 1px solid rgba(20, 241, 149, 0.3);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            color: #14F195;
-            margin-top: 10px;
-            font-weight: 600;
-        }
+    .hero-gradient {
+      background: radial-gradient(ellipse at 50% 0%, rgba(153, 69, 255, 0.15) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 50%, rgba(20, 241, 149, 0.1) 0%, transparent 40%),
+                  radial-gradient(ellipse at 20% 80%, rgba(0, 209, 255, 0.1) 0%, transparent 40%);
+    }
 
-        /* Section headers */
-        .section-header {
-            font-size: 32px;
-            font-weight: 700;
-            margin: 60px 0 30px;
-            background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    .sudoku-grid {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 1px;
+      background: #9945FF;
+      border: 2px solid #9945FF;
+      border-radius: 8px;
+      overflow: hidden;
+    }
 
-        .section-subtitle {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: -20px;
-            margin-bottom: 40px;
-        }
+    .sudoku-cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: clamp(0.6rem, 1.5vw, 1rem);
+      background: #1A1A1A;
+      color: #ffffff;
+    }
 
-        /* Hero Features */
-        .hero-features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 50px 0;
-        }
+    .sudoku-cell:nth-child(3n) {
+      border-right: 2px solid #9945FF;
+    }
 
-        .hero-feature {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(153, 69, 255, 0.2);
-            border-radius: 16px;
-            padding: 24px 16px;
-            transition: all 0.3s ease;
-        }
+    .sudoku-cell:nth-child(9n) {
+      border-right: none;
+    }
 
-        .hero-feature:hover {
-            background: rgba(153, 69, 255, 0.1);
-            border-color: rgba(153, 69, 255, 0.4);
-            transform: translateY(-4px);
-        }
+    .sudoku-cell:nth-child(n+19):nth-child(-n+27),
+    .sudoku-cell:nth-child(n+46):nth-child(-n+54) {
+      border-bottom: 2px solid #9945FF;
+    }
 
-        .hero-feature-icon {
-            font-size: 36px;
-            margin-bottom: 12px;
-        }
+    .sudoku-cell.highlight {
+      background: rgba(20, 241, 149, 0.2);
+      color: #14F195;
+    }
 
-        .hero-feature-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 6px;
-        }
+    .sudoku-cell.selected {
+      background: rgba(153, 69, 255, 0.3);
+      color: #fff;
+    }
 
-        .hero-feature-desc {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.5);
-            line-height: 1.4;
-        }
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
 
-        /* Detailed Features */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            text-align: left;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(2deg); }
+    }
 
-        .feature-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
+    .pulse-glow {
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
 
-        .feature-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(153, 69, 255, 0.3);
-            transform: translateX(4px);
-        }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(153, 69, 255, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(153, 69, 255, 0.6), 0 0 60px rgba(20, 241, 149, 0.3); }
+    }
 
-        .feature-item-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-
-        .feature-item-icon {
-            font-size: 24px;
-        }
-
-        .feature-item-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: #fff;
-        }
-
-        .feature-item-desc {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.5;
-            margin-left: 36px;
-        }
-
-        .feature-tag {
-            display: inline-block;
-            background: rgba(153, 69, 255, 0.2);
-            color: #9945FF;
-            font-size: 11px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            margin-left: 8px;
-            font-weight: 600;
-        }
-
-        /* Roadmap */
-        .roadmap-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .roadmap-phase {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 24px;
-            transition: all 0.3s ease;
-        }
-
-        .roadmap-phase:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(153, 69, 255, 0.3);
-        }
-
-        .roadmap-phase-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .roadmap-phase-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .roadmap-phase-badge {
-            font-size: 12px;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-weight: 600;
-        }
-
-        .badge-next { background: rgba(255, 215, 0, 0.2); color: #FFD700; }
-        .badge-future { background: rgba(153, 69, 255, 0.2); color: #9945FF; }
-        .badge-vision { background: rgba(20, 241, 149, 0.2); color: #14F195; }
-
-        .roadmap-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .roadmap-feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.4;
-        }
-
-        .roadmap-feature::before {
-            content: '✓';
-            color: #14F195;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        /* CTA */
-        .cta-section {
-            margin: 60px 0 40px;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(20, 241, 149, 0.1);
-            border: 1px solid rgba(20, 241, 149, 0.3);
-            padding: 8px 16px;
-            border-radius: 100px;
-            font-size: 14px;
-            color: #14F195;
-            margin-bottom: 20px;
-        }
-
-        .badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: #14F195;
-            border-radius: 50%;
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #9945FF 0%, #7B3FE4 100%);
-            color: #fff;
-            padding: 16px 40px;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(153, 69, 255, 0.4);
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(153, 69, 255, 0.5);
-        }
-
-        .trust-line {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
-            margin: 8px 0 4px;
-        }
-
-        .extra-features {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.4);
-            margin-bottom: 16px;
-        }
-
-        /* Legal links */
-        .legal-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 40px;
-        }
-
-        .legal-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .legal-links a:hover {
-            background: rgba(153, 69, 255, 0.15);
-            border-color: rgba(153, 69, 255, 0.3);
-            color: #fff;
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-links {
-            margin-bottom: 12px;
-        }
-
-        .contact-link {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .contact-link:hover {
-            color: #14F195;
-        }
-
-        .solana-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 14px;
-        }
-
-        .solana-badge svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .logo-text { font-size: 36px; }
-            .hero-features { grid-template-columns: 1fr; }
-            .features-grid { grid-template-columns: 1fr; }
-            .roadmap-features { grid-template-columns: 1fr; }
-            .container { padding: 40px 20px; }
-            .section-header { font-size: 28px; }
-        }
-    </style>
+    .chain-line {
+      background: linear-gradient(90deg, transparent, #9945FF, #14F195, transparent);
+      height: 2px;
+    }
+  </style>
 </head>
-<body>
-    <div class="bg-glow"></div>
+<body class="bg-dark font-body text-white antialiased">
 
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="logo-section">
-            <div class="logo-icon">🧩</div>
-            <h1 class="logo-text">MindBloom</h1>
-            <p class="tagline">Challenge Your Mind. Record on Chain.</p>
-            <div class="version-badge">v1.0.1 - Statistics & Progression Update</div>
+  <!-- Navigation -->
+  <nav class="fixed top-4 left-4 right-4 z-50">
+    <div class="max-w-6xl mx-auto bg-dark-card/90 backdrop-blur-xl border border-dark-border rounded-2xl px-6 py-4">
+      <div class="flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3 cursor-pointer group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <line x1="9" y1="3" x2="9" y2="21"/>
+              <line x1="15" y1="3" x2="15" y2="21"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="3" y1="15" x2="21" y2="15"/>
+            </svg>
+          </div>
+          <span class="font-heading font-bold text-xl">MindBloom</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#features" class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">Features</a>
+          <a href="#blockchain" class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">On-Chain</a>
+          <a href="#staking" class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">$SKR Stakers</a>
+          <a href="#roadmap" class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">Roadmap</a>
         </div>
 
-        <!-- Hero Features -->
-        <div class="hero-features">
-            <div class="hero-feature">
-                <div class="hero-feature-icon">🎮</div>
-                <div class="hero-feature-title">Play Sudoku</div>
-                <div class="hero-feature-desc">Easy / Medium / Hard — three difficulty levels with smart hint system</div>
-            </div>
-            <div class="hero-feature">
-                <div class="hero-feature-icon">📊</div>
-                <div class="hero-feature-title">Track Progress</div>
-                <div class="hero-feature-desc">Comprehensive statistics, win streaks, and performance analytics per difficulty</div>
-            </div>
-            <div class="hero-feature">
-                <div class="hero-feature-icon">⛓️</div>
-                <div class="hero-feature-title">On-Chain Records</div>
-                <div class="hero-feature-desc">Your best scores stored permanently on Solana via SPL Memo</div>
-            </div>
-        </div>
-
-        <!-- Current Features -->
-        <h2 class="section-header">🎯 Current Features (v1.0.1)</h2>
-        <p class="section-subtitle">Everything available in the latest release</p>
-
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-item-header">
-                    <span class="feature-item-icon">🧩</span>
-                    <span class="feature-item-title">Classic Sudoku Gameplay</span>
-                </div>
-                <div class="feature-item-desc">
-                    Three difficulty levels with perfectly balanced puzzles. Easy (30-40 cells), Medium (40-50), Hard (50-60).
-                </div>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-item-header">
-                    <span class="feature-item-icon">📈</span>
-                    <span class="feature-item-title">Statistics Tracking</span>
-                    <span class="feature-tag">NEW</span>
-                </div>
-                <div class="feature-item-desc">
-                    Complete stats system with total games, win rate, average time, and detailed per-difficulty analytics.
-                </div>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-item-header">
-                    <span class="feature-item-icon">🔥</span>
-                    <span class="feature-item-title">Win Streak System</span>
-                    <span class="feature-tag">NEW</span>
-                </div>
-                <div class="feature-item-desc">
-                    Track current and best streaks for each difficulty. Leaving mid-game resets your streak!
-                </div>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-item-header">
-                    <span class="feature-item-icon">💡</span>
-                    <span class="feature-item-title">Smart Hint System</span>
-                </div>
-                <div class="feature-item-desc">
-                    Stakers get 1-3 hints per difficulty: Auto Fill, Solve 3×3 Region, or Error Check.
-                </div>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-item-header">
-                    <span class="feature-item-icon">🏆</span>
-                    <span class="feature-item-title">Local Leaderboard</span>
-                </div>
-                <div class="feature-item-desc">
-                    View all your records by difficulty with timestamps, times, and hint usage tracking.
-                </div>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-item-header">
-                    <span class="feature-item-icon">⛓️</span>
-                    <span class="feature-item-title">Blockchain Recording</span>
-                </div>
-                <div class="feature-item-desc">
-                    Upload your best scores to Solana via SPL Memo program. Permanent, verifiable records.
-                </div>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-item-header">
-                    <span class="feature-item-icon">👛</span>
-                    <span class="feature-item-title">Wallet Integration</span>
-                </div>
-                <div class="feature-item-desc">
-                    Mobile Wallet Adapter support for Phantom, Solflare, and other Solana wallets.
-                </div>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-item-header">
-                    <span class="feature-item-icon">🎨</span>
-                    <span class="feature-item-title">Dark/Light Themes</span>
-                </div>
-                <div class="feature-item-desc">
-                    Beautiful UI with theme toggle. Optimized for Seeker's OLED display.
-                </div>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-item-header">
-                    <span class="feature-item-icon">📱</span>
-                    <span class="feature-item-title">Share Scores</span>
-                </div>
-                <div class="feature-item-desc">
-                    Generate beautiful score cards and share your achievements with friends.
-                </div>
-            </div>
-
-            <div class="feature-item">
-                <div class="feature-item-header">
-                    <span class="feature-item-icon">🔒</span>
-                    <span class="feature-item-title">Privacy First</span>
-                </div>
-                <div class="feature-item-desc">
-                    No tracking, no ads, no data collection. All stats stored locally on your device.
-                </div>
-            </div>
-        </div>
-
-        <!-- Roadmap -->
-        <h2 class="section-header">🚀 Roadmap</h2>
-        <p class="section-subtitle">What's coming next for MindBloom</p>
-
-        <div class="roadmap-grid">
-            <!-- v1.1.0 -->
-            <div class="roadmap-phase">
-                <div class="roadmap-phase-header">
-                    <div class="roadmap-phase-title">v1.1.0 - Enhanced Gameplay</div>
-                    <span class="roadmap-phase-badge badge-next">NEXT</span>
-                </div>
-                <div class="roadmap-features">
-                    <div class="roadmap-feature">Note-taking mode for candidate numbers</div>
-                    <div class="roadmap-feature">Undo/Redo functionality</div>
-                    <div class="roadmap-feature">Auto-save game progress</div>
-                    <div class="roadmap-feature">Expert difficulty level</div>
-                    <div class="roadmap-feature">Daily challenge mode</div>
-                    <div class="roadmap-feature">Tutorial for new players</div>
-                </div>
-            </div>
-
-            <!-- v1.2.0 -->
-            <div class="roadmap-phase">
-                <div class="roadmap-phase-header">
-                    <div class="roadmap-phase-title">v1.2.0 - Social Features</div>
-                    <span class="roadmap-phase-badge badge-future">PLANNED</span>
-                </div>
-                <div class="roadmap-features">
-                    <div class="roadmap-feature">Global leaderboard (backend service)</div>
-                    <div class="roadmap-feature">Friend system & challenges</div>
-                    <div class="roadmap-feature">Score comparison tools</div>
-                    <div class="roadmap-feature">Achievement badges</div>
-                    <div class="roadmap-feature">Multi-language support</div>
-                    <div class="roadmap-feature">Tournament mode</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- CTA -->
-        <div class="cta-section">
-            <div class="badge">Built on Solana · Available on Solana Seeker</div>
-            <p class="trust-line">Privacy-first. No tracking. Open source MIT license.</p>
-            <p class="extra-features">Statistics & Streaks · Hint System · Dark/Light theme · Share Scores</p>
-            <a href="#" class="download-btn" aria-label="Download on Seeker Store">
-                <span>📱</span> Coming to Seeker Store
-            </a>
-        </div>
-
-        <!-- Legal Links -->
-        <nav class="legal-links" aria-label="Legal">
-            <a href="COPYRIGHT.md" target="_blank" rel="noopener noreferrer">© Copyright</a>
-            <a href="LICENSE.md" target="_blank" rel="noopener noreferrer">MIT License</a>
-            <a href="PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-            <a href="https://github.com/devlin329/seeker-mindbloom" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </nav>
-
-        <!-- Footer -->
-        <div class="footer">
-            <div class="footer-links">
-                <a href="mailto:dev.charleslin@gmail.com" class="contact-link">Contact: dev.charleslin@gmail.com</a>
-            </div>
-            <div class="solana-badge">
-                <svg viewBox="0 0 397.7 311.7" fill="currentColor">
-                    <path d="M64.6 237.9c2.4-2.4 5.7-3.8 9.2-3.8h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1l62.7-62.7z"/>
-                    <path d="M64.6 3.8C67.1 1.4 70.4 0 73.8 0h317.4c5.8 0 8.7 7 4.6 11.1l-62.7 62.7c-2.4 2.4-5.7 3.8-9.2 3.8H6.5c-5.8 0-8.7-7-4.6-11.1L64.6 3.8z"/>
-                    <path d="M333.1 120.1c-2.4-2.4-5.7-3.8-9.2-3.8H6.5c-5.8 0-8.7 7-4.6 11.1l62.7 62.7c2.4 2.4 5.7 3.8 9.2 3.8h317.4c5.8 0 8.7-7 4.6-11.1l-62.7-62.7z"/>
-                </svg>
-                Powered by Solana
-            </div>
-        </div>
+        <a href="#download" class="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold px-5 py-2.5 rounded-xl transition-opacity duration-200 cursor-pointer">
+          Download
+        </a>
+      </div>
     </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden hero-gradient">
+    <!-- Animated background elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 right-10 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        <!-- Hero Content -->
+        <div class="text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full mb-6">
+            <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+            <span class="text-gray-400 text-sm">Built on Solana</span>
+            <svg class="w-4 h-4 text-secondary" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+
+          <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            Train Your Brain
+            <span class="gradient-text block">On Chain</span>
+          </h1>
+
+          <p class="text-lg sm:text-xl text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0">
+            The first Sudoku game with permanent on-chain score recording. Play, compete, and prove your skills on the Solana blockchain with MindBloom.
+          </p>
+
+          <!-- Stats Row -->
+          <div class="flex flex-wrap justify-center lg:justify-start gap-6 mb-10">
+            <div class="text-center">
+              <p class="font-heading text-2xl font-bold text-white">3</p>
+              <p class="text-gray-500 text-sm">Difficulty Levels</p>
+            </div>
+            <div class="w-px bg-dark-border"></div>
+            <div class="text-center">
+              <p class="font-heading text-2xl font-bold text-secondary">On-Chain</p>
+              <p class="text-gray-500 text-sm">Score Recording</p>
+            </div>
+            <div class="w-px bg-dark-border"></div>
+            <div class="text-center">
+              <p class="font-heading text-2xl font-bold text-primary">$SKR</p>
+              <p class="text-gray-500 text-sm">Staker Perks</p>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="#download" class="group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 cursor-pointer glow-primary">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+              <span>Available on Seeker dappStore</span>
+            </a>
+          </div>
+
+          <p class="text-gray-500 text-sm mt-4">
+            Exclusively on Solana Seeker devices
+          </p>
+        </div>
+
+        <!-- Hero Visual - Phone Mockup -->
+        <div class="relative flex justify-center lg:justify-end">
+          <div class="float-animation relative">
+            <!-- Phone Frame -->
+            <div class="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[3rem] p-3 shadow-2xl pulse-glow">
+              <div class="bg-dark rounded-[2.5rem] p-4 w-[280px] sm:w-[300px]">
+                <!-- Status Bar -->
+                <div class="flex justify-between items-center mb-4 px-2">
+                  <span class="text-xs text-gray-500 font-medium">9:41</span>
+                  <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-secondary rounded-full"></div>
+                    <span class="text-xs text-secondary">Connected</span>
+                  </div>
+                </div>
+
+                <!-- App Header -->
+                <div class="flex items-center justify-between mb-4">
+                  <div>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider">Difficulty</p>
+                    <p class="font-heading font-semibold text-warning">Medium</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-xs text-gray-500">Time</p>
+                    <p class="font-heading font-semibold text-white">04:32</p>
+                  </div>
+                </div>
+
+                <!-- Sudoku Grid -->
+                <div class="sudoku-grid mb-4">
+                  <div class="sudoku-cell">5</div>
+                  <div class="sudoku-cell">3</div>
+                  <div class="sudoku-cell highlight">4</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">7</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+
+                  <div class="sudoku-cell">6</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">1</div>
+                  <div class="sudoku-cell">9</div>
+                  <div class="sudoku-cell">5</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">9</div>
+                  <div class="sudoku-cell">8</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">6</div>
+                  <div class="sudoku-cell"></div>
+
+                  <div class="sudoku-cell">8</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">6</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">3</div>
+
+                  <div class="sudoku-cell">4</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">8</div>
+                  <div class="sudoku-cell selected">5</div>
+                  <div class="sudoku-cell">3</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">1</div>
+
+                  <div class="sudoku-cell">7</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">2</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">6</div>
+
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">6</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">2</div>
+                  <div class="sudoku-cell">8</div>
+                  <div class="sudoku-cell"></div>
+
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">4</div>
+                  <div class="sudoku-cell">1</div>
+                  <div class="sudoku-cell">9</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">5</div>
+
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">8</div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell"></div>
+                  <div class="sudoku-cell">7</div>
+                  <div class="sudoku-cell">9</div>
+                </div>
+
+                <!-- Number Pad Preview -->
+                <div class="grid grid-cols-5 gap-2">
+                  <div class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">1</div>
+                  <div class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">2</div>
+                  <div class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">3</div>
+                  <div class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">4</div>
+                  <div class="bg-primary/30 rounded-lg py-2 text-center text-sm font-semibold text-primary">5</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating badges -->
+            <div class="absolute -top-4 -right-4 bg-secondary text-dark text-xs font-bold px-3 py-1.5 rounded-full">
+              On-Chain
+            </div>
+            <div class="absolute -bottom-2 -left-4 bg-dark-card border border-dark-border text-xs px-3 py-1.5 rounded-full flex items-center gap-2">
+              <span class="w-2 h-2 bg-primary rounded-full"></span>
+              <span class="text-gray-300">Solana Powered</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chain Line Divider -->
+  <div class="chain-line w-full"></div>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 lg:py-32 bg-dark">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <p class="text-secondary font-semibold mb-4 uppercase tracking-wider text-sm">Features</p>
+        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          Classic Sudoku, <span class="gradient-text">Web3 Powered</span>
+        </h2>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+          All the puzzle-solving fun you love, with blockchain features that make your achievements permanent.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Feature 1 -->
+        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div class="w-14 h-14 bg-gradient-to-br from-secondary/20 to-secondary/5 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold mb-3">3 Difficulty Levels</h3>
+          <p class="text-gray-400">
+            <span class="text-secondary">Easy</span> (30 blanks), <span class="text-warning">Medium</span> (40 blanks), <span class="text-danger">Hard</span> (50 blanks). Progressive challenge for all skill levels.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold mb-3">Timer & Scoring</h3>
+          <p class="text-gray-400">Track your completion time with precision. Compete against yourself and climb the local leaderboard.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div class="w-14 h-14 bg-gradient-to-br from-accent/20 to-accent/5 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold mb-3">Smart Validation</h3>
+          <p class="text-gray-400">Real-time validation checks rows, columns, and 3×3 boxes. Error highlighting helps you learn faster.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div class="w-14 h-14 bg-gradient-to-br from-warning/20 to-warning/5 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-warning" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold mb-3">Detailed Statistics</h3>
+          <p class="text-gray-400">Track total games, win rates, streaks, play time, and performance breakdown by difficulty level.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div class="w-14 h-14 bg-gradient-to-br from-danger/20 to-danger/5 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-danger" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold mb-3">Share Your Scores</h3>
+          <p class="text-gray-400">Screenshot your achievements and share on social media. Show off your puzzle-solving prowess.</p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div class="w-14 h-14 bg-gradient-to-br from-secondary/20 to-primary/5 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold mb-3">Dark & Light Themes</h3>
+          <p class="text-gray-400">Switch between dark and light modes. Your preference is saved and persists across sessions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blockchain Section -->
+  <section id="blockchain" class="py-20 lg:py-32 bg-dark-card">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Content -->
+        <div>
+          <p class="text-primary font-semibold mb-4 uppercase tracking-wider text-sm">Blockchain Integration</p>
+          <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+            Your Scores, <span class="gradient-text">Permanently On-Chain</span>
+          </h2>
+          <p class="text-lg text-gray-400 mb-8">
+            MindBloom uses Solana's SPL Memo program to record your game completions directly on the blockchain. No centralized servers, no data loss—your achievements are immortalized forever.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-heading font-semibold text-lg mb-1">Mobile Wallet Adapter</h3>
+                <p class="text-gray-400">Secure wallet connection via official Solana MWA protocol. Your keys never leave your wallet.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-heading font-semibold text-lg mb-1">SPL Memo Recording</h3>
+                <p class="text-gray-400">Game data stored in Solana memo transactions. Immutable, verifiable, and fee-free.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-heading font-semibold text-lg mb-1">Anti-Spoofing Protection</h3>
+                <p class="text-gray-400">HMAC-SHA256 signatures prevent fake score submissions. Only legitimate games count.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual -->
+        <div class="relative">
+          <div class="gradient-border">
+            <div class="gradient-border-inner p-8">
+              <p class="text-gray-500 text-sm font-mono mb-4">// On-chain score record</p>
+              <pre class="text-sm overflow-x-auto"><code class="text-gray-300">{
+  <span class="text-primary">"app"</span>: <span class="text-secondary">"sol_sudoku"</span>,
+  <span class="text-primary">"level"</span>: <span class="text-warning">"medium"</span>,
+  <span class="text-primary">"time_seconds"</span>: <span class="text-accent">272</span>,
+  <span class="text-primary">"timestamp"</span>: <span class="text-accent">1706886400</span>,
+  <span class="text-primary">"hint_used"</span>: <span class="text-accent">0</span>,
+  <span class="text-primary">"sig"</span>: <span class="text-gray-500">"a7f3c9..."</span>
+}</code></pre>
+              <div class="mt-6 pt-6 border-t border-dark-border">
+                <div class="flex items-center gap-3">
+                  <div class="w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
+                  <span class="text-gray-400 text-sm">Stored on Solana Mainnet</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKR Staking Section -->
+  <section id="staking" class="py-20 lg:py-32 bg-dark">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <p class="text-warning font-semibold mb-4 uppercase tracking-wider text-sm">$SKR Stakers</p>
+        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          Stake $SKR, <span class="text-warning">Unlock Hints</span>
+        </h2>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+          Seeker token stakers get exclusive access to powerful hint features. Stuck on a puzzle? We've got you covered.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Hint 1 -->
+        <div class="bg-gradient-to-b from-dark-card to-dark border border-dark-border rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold mb-3">Auto-Fill</h3>
+          <p class="text-gray-400">Automatically fill in one correct number. Perfect when you're stuck on a tricky cell.</p>
+        </div>
+
+        <!-- Hint 2 -->
+        <div class="bg-gradient-to-b from-dark-card to-dark border border-dark-border rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/>
+              <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold mb-3">Solve 3×3</h3>
+          <p class="text-gray-400">Solve a random 3×3 region completely. Great for breaking through mental blocks.</p>
+        </div>
+
+        <!-- Hint 3 -->
+        <div class="bg-gradient-to-b from-dark-card to-dark border border-dark-border rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 bg-danger/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-danger" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold mb-3">Error Check</h3>
+          <p class="text-gray-400">Highlight all incorrect entries. Find and fix your mistakes instantly.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <div class="inline-flex items-center gap-3 bg-dark-card border border-warning/30 rounded-xl px-6 py-4">
+          <svg class="w-6 h-6 text-warning" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          <span class="text-gray-300">Stake $SKR on the Seeker ecosystem to unlock these features</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap Section -->
+  <section id="roadmap" class="py-20 lg:py-32 bg-dark-card">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <p class="text-accent font-semibold mb-4 uppercase tracking-wider text-sm">Roadmap</p>
+        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          What's <span class="gradient-text">Coming Next</span>
+        </h2>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+          We're constantly improving MindBloom. Here's what we're working on.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <!-- v1.1.0 -->
+        <div class="bg-dark border border-dark-border hover:border-warning/50 rounded-2xl p-8 transition-all duration-300">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-heading text-xl font-bold">v1.1.0 - Enhanced Gameplay</h3>
+            <span class="bg-warning/20 text-warning text-xs font-bold px-3 py-1 rounded-full">NEXT</span>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Note-taking mode for candidate numbers</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Undo/Redo functionality</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Auto-save game progress</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Expert difficulty level</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Daily challenge mode</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              </svg>
+              <span>Tutorial for new players</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- v1.2.0 -->
+        <div class="bg-dark border border-dark-border hover:border-primary/50 rounded-2xl p-8 transition-all duration-300">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="font-heading text-xl font-bold">v1.2.0 - Social Features</h3>
+            <span class="bg-primary/20 text-primary text-xs font-bold px-3 py-1 rounded-full">PLANNED</span>
+          </div>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              <span>Global leaderboard (backend service)</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              <span>Friend system & challenges</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              <span>Score comparison tools</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              <span>Achievement badges</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              <span>Multi-language support</span>
+            </li>
+            <li class="flex items-start gap-3 text-gray-400">
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              <span>Tournament mode</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section id="download" class="py-20 lg:py-32 relative overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-dark to-secondary/20"></div>
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 bg-dark-card/80 backdrop-blur border border-dark-border px-4 py-2 rounded-full mb-6">
+        <span class="w-2 h-2 bg-secondary rounded-full"></span>
+        <span class="text-gray-300 text-sm">Available Now</span>
+      </div>
+
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+        Get MindBloom on <span class="gradient-text">Seeker</span>
+      </h2>
+      <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+        MindBloom is available on the Seeker dappStore. Train your brain on the Solana blockchain today.
+      </p>
+
+      <div class="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold px-10 py-5 rounded-2xl glow-primary text-lg">
+        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+        <div class="text-left">
+          <div class="text-xs opacity-80">Available on</div>
+          <div class="text-lg font-bold">Seeker dappStore</div>
+        </div>
+      </div>
+
+      <p class="text-gray-500 text-sm mt-6">
+        Available on Solana Seeker device • Free to download • Wallet connection required for on-chain features
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark-card border-t border-dark-border py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <!-- Brand -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <a href="#" class="flex items-center gap-3 cursor-pointer mb-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <line x1="9" y1="3" x2="9" y2="21"/>
+                <line x1="15" y1="3" x2="15" y2="21"/>
+                <line x1="3" y1="9" x2="21" y2="9"/>
+                <line x1="3" y1="15" x2="21" y2="15"/>
+              </svg>
+            </div>
+            <span class="font-heading font-bold text-xl">MindBloom</span>
+          </a>
+          <p class="text-gray-500 text-sm">Train Your Brain on Chain. Sudoku powered by Solana blockchain.</p>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <h4 class="font-semibold text-white mb-4">Product</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#features" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Features</a></li>
+            <li><a href="#blockchain" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">On-Chain</a></li>
+            <li><a href="#staking" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">$SKR Stakers</a></li>
+            <li><a href="#roadmap" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Roadmap</a></li>
+            <li><a href="#download" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Download</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-white mb-4">Resources</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://github.com/devlin329/seeker-mindbloom" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">GitHub</a></li>
+            <li><a href="https://devlin329.github.io/seeker-mindbloom" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Documentation</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-white mb-4">Legal</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://devlin329.github.io/seeker-mindbloom/PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Privacy Policy</a></li>
+            <li><a href="https://devlin329.github.io/seeker-mindbloom/COPYRIGHT.md" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Copyright</a></li>
+            <li><a href="https://devlin329.github.io/seeker-mindbloom/LICENSE.md" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">License (MIT)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-dark-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-gray-500 text-sm">&copy; 2025 MindBloom. Built on Solana.</p>
+        <div class="flex items-center gap-4">
+          <a href="https://github.com/devlin329/seeker-mindbloom" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer" aria-label="GitHub">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="mailto:dev.charleslin@gmail.com" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer" aria-label="Email">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
