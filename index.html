@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MindBloom - Train Your Brain on Chain | Solana Sudoku</title>
-  <meta name="description" content="MindBloom is a Sudoku game built on Solana blockchain. Record your scores on-chain permanently, compete with $SKR stakers, and train your brain on the Seeker device.">
+  <meta name="description"
+    content="MindBloom is a Sudoku game built on Solana blockchain. Record your scores on-chain permanently, compete with $SKR stakers, and train your brain on the Seeker device.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -13,7 +16,8 @@
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="MindBloom - Train Your Brain on Chain">
-  <meta property="og:description" content="The first Sudoku game with permanent on-chain score recording. Play, compete, and prove your skills on Solana.">
+  <meta property="og:description"
+    content="The first Sudoku game with permanent on-chain score recording. Play, compete, and prove your skills on Solana.">
   <meta property="og:url" content="https://devlin329.github.io/seeker-mindbloom">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MindBloom - Train Your Brain on Chain">
@@ -23,7 +27,9 @@
   <meta name="theme-color" content="#0D0D0D">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -52,7 +58,10 @@
 
   <style>
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
@@ -91,8 +100,8 @@
 
     .hero-gradient {
       background: radial-gradient(ellipse at 50% 0%, rgba(153, 69, 255, 0.15) 0%, transparent 50%),
-                  radial-gradient(ellipse at 80% 50%, rgba(20, 241, 149, 0.1) 0%, transparent 40%),
-                  radial-gradient(ellipse at 20% 80%, rgba(0, 209, 255, 0.1) 0%, transparent 40%);
+        radial-gradient(ellipse at 80% 50%, rgba(20, 241, 149, 0.1) 0%, transparent 40%),
+        radial-gradient(ellipse at 20% 80%, rgba(0, 209, 255, 0.1) 0%, transparent 40%);
     }
 
     .sudoku-grid {
@@ -145,8 +154,15 @@
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-15px) rotate(2deg); }
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-15px) rotate(2deg);
+      }
     }
 
     .pulse-glow {
@@ -154,8 +170,15 @@
     }
 
     @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 20px rgba(153, 69, 255, 0.4); }
-      50% { box-shadow: 0 0 40px rgba(153, 69, 255, 0.6), 0 0 60px rgba(20, 241, 149, 0.3); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(153, 69, 255, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 40px rgba(153, 69, 255, 0.6), 0 0 60px rgba(20, 241, 149, 0.3);
+      }
     }
 
     .chain-line {
@@ -164,6 +187,7 @@
     }
   </style>
 </head>
+
 <body class="bg-dark font-body text-white antialiased">
 
   <!-- Navigation -->
@@ -171,26 +195,32 @@
     <div class="max-w-6xl mx-auto bg-dark-card/90 backdrop-blur-xl border border-dark-border rounded-2xl px-6 py-4">
       <div class="flex items-center justify-between">
         <a href="#" class="flex items-center gap-3 cursor-pointer group">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
             <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <line x1="9" y1="3" x2="9" y2="21"/>
-              <line x1="15" y1="3" x2="15" y2="21"/>
-              <line x1="3" y1="9" x2="21" y2="9"/>
-              <line x1="3" y1="15" x2="21" y2="15"/>
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <line x1="9" y1="3" x2="9" y2="21" />
+              <line x1="15" y1="3" x2="15" y2="21" />
+              <line x1="3" y1="9" x2="21" y2="9" />
+              <line x1="3" y1="15" x2="21" y2="15" />
             </svg>
           </div>
           <span class="font-heading font-bold text-xl">MindBloom</span>
         </a>
 
         <div class="hidden md:flex items-center gap-8">
-          <a href="#features" class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">Features</a>
-          <a href="#blockchain" class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">On-Chain</a>
-          <a href="#staking" class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">$SKR Stakers</a>
-          <a href="#roadmap" class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">Roadmap</a>
+          <a href="#features"
+            class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">Features</a>
+          <a href="#blockchain"
+            class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">On-Chain</a>
+          <a href="#staking"
+            class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">$SKR Stakers</a>
+          <a href="#roadmap"
+            class="text-gray-400 hover:text-secondary transition-colors duration-200 cursor-pointer">Roadmap</a>
         </div>
 
-        <a href="#download" class="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold px-5 py-2.5 rounded-xl transition-opacity duration-200 cursor-pointer">
+        <a href="#download"
+          class="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold px-5 py-2.5 rounded-xl transition-opacity duration-200 cursor-pointer">
           Download
         </a>
       </div>
@@ -210,11 +240,12 @@
 
         <!-- Hero Content -->
         <div class="text-center lg:text-left">
-          <div class="inline-flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full mb-6">
+          <div
+            class="inline-flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full mb-6">
             <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
             <span class="text-gray-400 text-sm">Built on Solana</span>
             <svg class="w-4 h-4 text-secondary" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
             </svg>
           </div>
 
@@ -224,7 +255,8 @@
           </h1>
 
           <p class="text-lg sm:text-xl text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0">
-            The first Sudoku game with permanent on-chain score recording. Play, compete, and prove your skills on the Solana blockchain with MindBloom.
+            The first Sudoku game with permanent on-chain score recording. Play, compete, and prove your skills on the
+            Solana blockchain with MindBloom.
           </p>
 
           <!-- Stats Row -->
@@ -247,11 +279,12 @@
 
           <!-- CTA Button -->
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <a href="#download" class="group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 cursor-pointer glow-primary">
+            <a href="https://solanamobile.com/seeker" target="_blank" rel="noopener noreferrer"
+              class="group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 cursor-pointer glow-primary">
               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                <path d="M2 17l10 5 10-5"/>
-                <path d="M2 12l10 5 10-5"/>
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
               </svg>
               <span>Available on Seeker dappStore</span>
             </a>
@@ -384,10 +417,18 @@
 
                 <!-- Number Pad Preview -->
                 <div class="grid grid-cols-5 gap-2">
-                  <div class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">1</div>
-                  <div class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">2</div>
-                  <div class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">3</div>
-                  <div class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">4</div>
+                  <div
+                    class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">
+                    1</div>
+                  <div
+                    class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">
+                    2</div>
+                  <div
+                    class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">
+                    3</div>
+                  <div
+                    class="bg-dark-card rounded-lg py-2 text-center text-sm font-semibold cursor-pointer hover:bg-primary/20 transition-colors">
+                    4</div>
                   <div class="bg-primary/30 rounded-lg py-2 text-center text-sm font-semibold text-primary">5</div>
                 </div>
               </div>
@@ -397,7 +438,8 @@
             <div class="absolute -top-4 -right-4 bg-secondary text-dark text-xs font-bold px-3 py-1.5 rounded-full">
               On-Chain
             </div>
-            <div class="absolute -bottom-2 -left-4 bg-dark-card border border-dark-border text-xs px-3 py-1.5 rounded-full flex items-center gap-2">
+            <div
+              class="absolute -bottom-2 -left-4 bg-dark-card border border-dark-border text-xs px-3 py-1.5 rounded-full flex items-center gap-2">
               <span class="w-2 h-2 bg-primary rounded-full"></span>
               <span class="text-gray-300">Solana Powered</span>
             </div>
@@ -425,72 +467,94 @@
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Feature 1 -->
-        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
-          <div class="w-14 h-14 bg-gradient-to-br from-secondary/20 to-secondary/5 rounded-xl flex items-center justify-center mb-6">
+        <div
+          class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-secondary/20 to-secondary/5 rounded-xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           </div>
           <h3 class="font-heading text-xl font-semibold mb-3">3 Difficulty Levels</h3>
           <p class="text-gray-400">
-            <span class="text-secondary">Easy</span> (30 blanks), <span class="text-warning">Medium</span> (40 blanks), <span class="text-danger">Hard</span> (50 blanks). Progressive challenge for all skill levels.
+            <span class="text-secondary">Easy</span> (30 blanks), <span class="text-warning">Medium</span> (40 blanks),
+            <span class="text-danger">Hard</span> (50 blanks). Progressive challenge for all skill levels.
           </p>
         </div>
 
         <!-- Feature 2 -->
-        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
-          <div class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mb-6">
+        <div
+          class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/5 rounded-xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           <h3 class="font-heading text-xl font-semibold mb-3">Timer & Scoring</h3>
-          <p class="text-gray-400">Track your completion time with precision. Compete against yourself and climb the local leaderboard.</p>
+          <p class="text-gray-400">Track your completion time with precision. Compete against yourself and climb the
+            local leaderboard.</p>
         </div>
 
         <!-- Feature 3 -->
-        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
-          <div class="w-14 h-14 bg-gradient-to-br from-accent/20 to-accent/5 rounded-xl flex items-center justify-center mb-6">
+        <div
+          class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-accent/20 to-accent/5 rounded-xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
           </div>
           <h3 class="font-heading text-xl font-semibold mb-3">Smart Validation</h3>
-          <p class="text-gray-400">Real-time validation checks rows, columns, and 3×3 boxes. Error highlighting helps you learn faster.</p>
+          <p class="text-gray-400">Real-time validation checks rows, columns, and 3×3 boxes. Error highlighting helps
+            you learn faster.</p>
         </div>
 
         <!-- Feature 4 -->
-        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
-          <div class="w-14 h-14 bg-gradient-to-br from-warning/20 to-warning/5 rounded-xl flex items-center justify-center mb-6">
+        <div
+          class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-warning/20 to-warning/5 rounded-xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-warning" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
             </svg>
           </div>
           <h3 class="font-heading text-xl font-semibold mb-3">Detailed Statistics</h3>
-          <p class="text-gray-400">Track total games, win rates, streaks, play time, and performance breakdown by difficulty level.</p>
+          <p class="text-gray-400">Track total games, win rates, streaks, play time, and performance breakdown by
+            difficulty level.</p>
         </div>
 
         <!-- Feature 5 -->
-        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
-          <div class="w-14 h-14 bg-gradient-to-br from-danger/20 to-danger/5 rounded-xl flex items-center justify-center mb-6">
+        <div
+          class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-danger/20 to-danger/5 rounded-xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-danger" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
             </svg>
           </div>
           <h3 class="font-heading text-xl font-semibold mb-3">Share Your Scores</h3>
-          <p class="text-gray-400">Screenshot your achievements and share on social media. Show off your puzzle-solving prowess.</p>
+          <p class="text-gray-400">Screenshot your achievements and share on social media. Show off your puzzle-solving
+            prowess.</p>
         </div>
 
         <!-- Feature 6 -->
-        <div class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
-          <div class="w-14 h-14 bg-gradient-to-br from-secondary/20 to-primary/5 rounded-xl flex items-center justify-center mb-6">
+        <div
+          class="group bg-dark-card border border-dark-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-300 cursor-pointer">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-secondary/20 to-primary/5 rounded-xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
             </svg>
           </div>
           <h3 class="font-heading text-xl font-semibold mb-3">Dark & Light Themes</h3>
-          <p class="text-gray-400">Switch between dark and light modes. Your preference is saved and persists across sessions.</p>
+          <p class="text-gray-400">Switch between dark and light modes. Your preference is saved and persists across
+            sessions.</p>
         </div>
       </div>
     </div>
@@ -507,43 +571,52 @@
             Your Scores, <span class="gradient-text">Permanently On-Chain</span>
           </h2>
           <p class="text-lg text-gray-400 mb-8">
-            MindBloom uses Solana's SPL Memo program to record your game completions directly on the blockchain. No centralized servers, no data loss—your achievements are immortalized forever.
+            MindBloom uses Solana's SPL Memo program to record your game completions directly on the blockchain. No
+            centralized servers, no data loss—your achievements are immortalized forever.
           </p>
 
           <div class="space-y-6">
             <div class="flex gap-4">
               <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
               <div>
                 <h3 class="font-heading font-semibold text-lg mb-1">Mobile Wallet Adapter</h3>
-                <p class="text-gray-400">Secure wallet connection via official Solana MWA protocol. Your keys never leave your wallet.</p>
+                <p class="text-gray-400">Secure wallet connection via official Solana MWA protocol. Your keys never
+                  leave your wallet.</p>
               </div>
             </div>
 
             <div class="flex gap-4">
               <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
               <div>
                 <h3 class="font-heading font-semibold text-lg mb-1">SPL Memo Recording</h3>
-                <p class="text-gray-400">Game data stored in Solana memo transactions. Immutable, verifiable, and fee-free.</p>
+                <p class="text-gray-400">Game data stored in Solana memo transactions. Immutable, verifiable, and
+                  fee-free.</p>
               </div>
             </div>
 
             <div class="flex gap-4">
               <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
                 <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
               <div>
                 <h3 class="font-heading font-semibold text-lg mb-1">Anti-Spoofing Protection</h3>
-                <p class="text-gray-400">HMAC-SHA256 signatures prevent fake score submissions. Only legitimate games count.</p>
+                <p class="text-gray-400">HMAC-SHA256 signatures prevent fake score submissions. Only legitimate games
+                  count.</p>
               </div>
             </div>
           </div>
@@ -593,21 +666,22 @@
         <div class="bg-gradient-to-b from-dark-card to-dark border border-dark-border rounded-2xl p-8 text-center">
           <div class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
             <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
           </div>
           <h3 class="font-heading text-xl font-semibold mb-3">Auto-Fill</h3>
-          <p class="text-gray-400">Automatically fill in one correct number. Perfect when you're stuck on a tricky cell.</p>
+          <p class="text-gray-400">Automatically fill in one correct number. Perfect when you're stuck on a tricky cell.
+          </p>
         </div>
 
         <!-- Hint 2 -->
         <div class="bg-gradient-to-b from-dark-card to-dark border border-dark-border rounded-2xl p-8 text-center">
           <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
             <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <rect x="3" y="3" width="7" height="7" rx="1"/>
-              <rect x="14" y="3" width="7" height="7" rx="1"/>
-              <rect x="3" y="14" width="7" height="7" rx="1"/>
-              <rect x="14" y="14" width="7" height="7" rx="1"/>
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
             </svg>
           </div>
           <h3 class="font-heading text-xl font-semibold mb-3">Solve 3×3</h3>
@@ -618,7 +692,8 @@
         <div class="bg-gradient-to-b from-dark-card to-dark border border-dark-border rounded-2xl p-8 text-center">
           <div class="w-16 h-16 bg-danger/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
             <svg class="w-8 h-8 text-danger" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
           </div>
           <h3 class="font-heading text-xl font-semibold mb-3">Error Check</h3>
@@ -629,7 +704,7 @@
       <div class="mt-12 text-center">
         <div class="inline-flex items-center gap-3 bg-dark-card border border-warning/30 rounded-xl px-6 py-4">
           <svg class="w-6 h-6 text-warning" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
           </svg>
           <span class="text-gray-300">Stake $SKR on the Seeker ecosystem to unlock these features</span>
         </div>
@@ -652,45 +727,52 @@
 
       <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
         <!-- v1.1.0 -->
-        <div class="bg-dark border border-dark-border hover:border-warning/50 rounded-2xl p-8 transition-all duration-300">
+        <div
+          class="bg-dark border border-dark-border hover:border-warning/50 rounded-2xl p-8 transition-all duration-300">
           <div class="flex items-center justify-between mb-6">
             <h3 class="font-heading text-xl font-bold">v1.1.0 - Enhanced Gameplay</h3>
             <span class="bg-warning/20 text-warning text-xs font-bold px-3 py-1 rounded-full">NEXT</span>
           </div>
           <ul class="space-y-3">
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               <span>Note-taking mode for candidate numbers</span>
             </li>
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               <span>Undo/Redo functionality</span>
             </li>
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               <span>Auto-save game progress</span>
             </li>
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               <span>Expert difficulty level</span>
             </li>
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               <span>Daily challenge mode</span>
             </li>
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
               </svg>
               <span>Tutorial for new players</span>
             </li>
@@ -698,49 +780,107 @@
         </div>
 
         <!-- v1.2.0 -->
-        <div class="bg-dark border border-dark-border hover:border-primary/50 rounded-2xl p-8 transition-all duration-300">
+        <div
+          class="bg-dark border border-dark-border hover:border-primary/50 rounded-2xl p-8 transition-all duration-300">
           <div class="flex items-center justify-between mb-6">
             <h3 class="font-heading text-xl font-bold">v1.2.0 - Social Features</h3>
             <span class="bg-primary/20 text-primary text-xs font-bold px-3 py-1 rounded-full">PLANNED</span>
           </div>
           <ul class="space-y-3">
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/>
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
               </svg>
               <span>Global leaderboard (backend service)</span>
             </li>
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/>
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
               </svg>
               <span>Friend system & challenges</span>
             </li>
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/>
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
               </svg>
               <span>Score comparison tools</span>
             </li>
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/>
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
               </svg>
               <span>Achievement badges</span>
             </li>
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/>
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
               </svg>
               <span>Multi-language support</span>
             </li>
             <li class="flex items-start gap-3 text-gray-400">
-              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/>
+              <svg class="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
               </svg>
               <span>Tournament mode</span>
             </li>
           </ul>
+        </div>
+      </div>
+
+      <!-- v1.0.2 Preview Section -->
+      <div class="mt-16 pt-16 border-t border-dark-border">
+        <div class="text-center mb-12">
+          <span class="bg-secondary/20 text-secondary text-xs font-bold px-4 py-2 rounded-full">NEW IN v1.0.2</span>
+          <h3 class="font-heading text-2xl sm:text-3xl font-bold mt-6 mb-4">
+            Introducing <span class="text-secondary">Relax Mode</span> 🧘
+          </h3>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            A stress-free way to enjoy Sudoku. No timer, no pressure—just pure puzzle-solving relaxation with background music and free hints.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <!-- Screenshot 1 - Home Screen -->
+          <div class="bg-dark border border-dark-border rounded-2xl p-6 text-center">
+            <img src="new_v102-1.png" alt="MindBloom v1.0.2 - Relax Mode Button"
+                 class="rounded-xl shadow-lg mx-auto mb-4 max-h-[400px] object-contain">
+            <h4 class="font-heading font-semibold text-lg mb-2">New Relax Mode Button</h4>
+            <p class="text-gray-400 text-sm">One-tap access to stress-free gameplay right from the home screen.</p>
+          </div>
+
+          <!-- Screenshot 2 - Game Screen -->
+          <div class="bg-dark border border-dark-border rounded-2xl p-6 text-center">
+            <img src="new_v102-2.png" alt="MindBloom v1.0.2 - Relax Mode Gameplay"
+                 class="rounded-xl shadow-lg mx-auto mb-4 max-h-[400px] object-contain">
+            <h4 class="font-heading font-semibold text-lg mb-2">Relaxing Gameplay</h4>
+            <p class="text-gray-400 text-sm">Background music toggle, free hints, and no timer pressure.</p>
+          </div>
+        </div>
+
+        <!-- Features List -->
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+          <div class="flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full">
+            <span class="text-secondary">🎵</span>
+            <span class="text-gray-300 text-sm">Background Music</span>
+          </div>
+          <div class="flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full">
+            <span class="text-secondary">⏱️</span>
+            <span class="text-gray-300 text-sm">No Timer</span>
+          </div>
+          <div class="flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full">
+            <span class="text-secondary">💡</span>
+            <span class="text-gray-300 text-sm">Free Hints</span>
+          </div>
+          <div class="flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full">
+            <span class="text-secondary">📊</span>
+            <span class="text-gray-300 text-sm">No Stats Tracking</span>
+          </div>
         </div>
       </div>
     </div>
@@ -756,7 +896,8 @@
     </div>
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-      <div class="inline-flex items-center gap-2 bg-dark-card/80 backdrop-blur border border-dark-border px-4 py-2 rounded-full mb-6">
+      <div
+        class="inline-flex items-center gap-2 bg-dark-card/80 backdrop-blur border border-dark-border px-4 py-2 rounded-full mb-6">
         <span class="w-2 h-2 bg-secondary rounded-full"></span>
         <span class="text-gray-300 text-sm">Available Now</span>
       </div>
@@ -768,17 +909,18 @@
         MindBloom is available on the Seeker dappStore. Train your brain on the Solana blockchain today.
       </p>
 
-      <div class="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold px-10 py-5 rounded-2xl glow-primary text-lg">
+      <a href="https://solanamobile.com/seeker" target="_blank" rel="noopener noreferrer"
+        class="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold px-10 py-5 rounded-2xl glow-primary text-lg transition-opacity duration-200">
         <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-          <path d="M2 17l10 5 10-5"/>
-          <path d="M2 12l10 5 10-5"/>
+          <path d="M12 2L2 7l10 5 10-5-10-5z" />
+          <path d="M2 17l10 5 10-5" />
+          <path d="M2 12l10 5 10-5" />
         </svg>
         <div class="text-left">
           <div class="text-xs opacity-80">Available on</div>
           <div class="text-lg font-bold">Seeker dappStore</div>
         </div>
-      </div>
+      </a>
 
       <p class="text-gray-500 text-sm mt-6">
         Available on Solana Seeker device • Free to download • Wallet connection required for on-chain features
@@ -793,13 +935,14 @@
         <!-- Brand -->
         <div class="sm:col-span-2 lg:col-span-1">
           <a href="#" class="flex items-center gap-3 cursor-pointer mb-4">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
               <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                <line x1="9" y1="3" x2="9" y2="21"/>
-                <line x1="15" y1="3" x2="15" y2="21"/>
-                <line x1="3" y1="9" x2="21" y2="9"/>
-                <line x1="3" y1="15" x2="21" y2="15"/>
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <line x1="9" y1="3" x2="9" y2="21" />
+                <line x1="15" y1="3" x2="15" y2="21" />
+                <line x1="3" y1="9" x2="21" y2="9" />
+                <line x1="3" y1="15" x2="21" y2="15" />
               </svg>
             </div>
             <span class="font-heading font-bold text-xl">MindBloom</span>
@@ -811,28 +954,50 @@
         <div>
           <h4 class="font-semibold text-white mb-4">Product</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="#features" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Features</a></li>
-            <li><a href="#blockchain" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">On-Chain</a></li>
-            <li><a href="#staking" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">$SKR Stakers</a></li>
-            <li><a href="#roadmap" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Roadmap</a></li>
-            <li><a href="#download" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Download</a></li>
+            <li><a href="#features"
+                class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Features</a>
+            </li>
+            <li><a href="#blockchain"
+                class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">On-Chain</a>
+            </li>
+            <li><a href="#staking"
+                class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">$SKR
+                Stakers</a></li>
+            <li><a href="#roadmap"
+                class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Roadmap</a>
+            </li>
+            <li><a href="#download"
+                class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Download</a>
+            </li>
           </ul>
         </div>
 
         <div>
           <h4 class="font-semibold text-white mb-4">Resources</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="https://github.com/devlin329/seeker-mindbloom" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">GitHub</a></li>
-            <li><a href="https://devlin329.github.io/seeker-mindbloom" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Documentation</a></li>
+            <li><a href="https://github.com/devlin329/seeker-mindbloom" target="_blank" rel="noopener noreferrer"
+                class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">GitHub</a></li>
+            <li><a href="https://devlin329.github.io/seeker-mindbloom" target="_blank" rel="noopener noreferrer"
+                class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Documentation</a>
+            </li>
           </ul>
         </div>
 
         <div>
           <h4 class="font-semibold text-white mb-4">Legal</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="https://devlin329.github.io/seeker-mindbloom/PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Privacy Policy</a></li>
-            <li><a href="https://devlin329.github.io/seeker-mindbloom/COPYRIGHT.md" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Copyright</a></li>
-            <li><a href="https://devlin329.github.io/seeker-mindbloom/LICENSE.md" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">License (MIT)</a></li>
+            <li><a href="https://devlin329.github.io/seeker-mindbloom/PRIVACY_POLICY.md" target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Privacy
+                Policy</a></li>
+            <li><a href="https://devlin329.github.io/seeker-mindbloom/COPYRIGHT.md" target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">Copyright</a>
+            </li>
+            <li><a href="https://devlin329.github.io/seeker-mindbloom/LICENSE.md" target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer">License
+                (MIT)</a></li>
           </ul>
         </div>
       </div>
@@ -840,11 +1005,20 @@
       <div class="border-t border-dark-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
         <p class="text-gray-500 text-sm">&copy; 2025 MindBloom. Built on Solana.</p>
         <div class="flex items-center gap-4">
-          <a href="https://github.com/devlin329/seeker-mindbloom" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer" aria-label="GitHub">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <a href="https://github.com/devlin329/seeker-mindbloom" target="_blank" rel="noopener noreferrer"
+            class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer"
+            aria-label="GitHub">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
           </a>
-          <a href="mailto:dev.charleslin@gmail.com" class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer" aria-label="Email">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <a href="mailto:dev.charleslin@gmail.com"
+            class="text-gray-500 hover:text-secondary transition-colors duration-200 cursor-pointer" aria-label="Email">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
           </a>
         </div>
       </div>
@@ -852,4 +1026,5 @@
   </footer>
 
 </body>
+
 </html>
