@@ -836,50 +836,76 @@
       <!-- v1.0.2 Preview Section -->
       <div class="mt-16 pt-16 border-t border-dark-border">
         <div class="text-center mb-12">
-          <span class="bg-secondary/20 text-secondary text-xs font-bold px-4 py-2 rounded-full">NEW IN v1.0.2</span>
+          <span class="bg-primary/20 text-primary text-xs font-bold px-4 py-2 rounded-full">NEW IN v1.0.2</span>
           <h3 class="font-heading text-2xl sm:text-3xl font-bold mt-6 mb-4">
-            Introducing <span class="text-secondary">Relax Mode</span> 🧘
+            Introducing <span class="gradient-text">Diagonal Sudoku</span> 🎯
           </h3>
           <p class="text-gray-400 max-w-2xl mx-auto">
-            A stress-free way to enjoy Sudoku. No timer, no pressure—just pure puzzle-solving relaxation with background music and free hints.
+            The first Sudoku variant has arrived! Stakers can now enjoy Diagonal Sudoku (X-Sudoku) with purple diagonal
+            highlights, plus Relax Mode for stress-free gameplay.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Screenshots Grid - 2x2 Large Layout -->
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
           <!-- Screenshot 1 - Home Screen -->
-          <div class="bg-dark border border-dark-border rounded-2xl p-6 text-center">
-            <img src="new_v102-1.png" alt="MindBloom v1.0.2 - Relax Mode Button"
-                 class="rounded-xl shadow-lg mx-auto mb-4 max-h-[400px] object-contain">
-            <h4 class="font-heading font-semibold text-lg mb-2">New Relax Mode Button</h4>
-            <p class="text-gray-400 text-sm">One-tap access to stress-free gameplay right from the home screen.</p>
+          <div
+            class="bg-dark border border-dark-border hover:border-secondary/50 rounded-2xl p-6 transition-all duration-300">
+            <img src="323.png" alt="MindBloom v1.0.2 - Home Screen with Variants"
+              class="rounded-xl shadow-2xl mx-auto mb-4 w-full max-w-[320px] object-contain">
+            <h4 class="font-heading font-semibold text-lg mb-2 text-center">🏠 New Home Screen</h4>
+            <p class="text-gray-400 text-sm text-center">Relax Mode button + Variants entry card for $SKR Stakers</p>
           </div>
 
-          <!-- Screenshot 2 - Game Screen -->
-          <div class="bg-dark border border-dark-border rounded-2xl p-6 text-center">
-            <img src="new_v102-2.png" alt="MindBloom v1.0.2 - Relax Mode Gameplay"
-                 class="rounded-xl shadow-lg mx-auto mb-4 max-h-[400px] object-contain">
-            <h4 class="font-heading font-semibold text-lg mb-2">Relaxing Gameplay</h4>
-            <p class="text-gray-400 text-sm">Background music toggle, free hints, and no timer pressure.</p>
+          <!-- Screenshot 2 - Relax Mode -->
+          <div
+            class="bg-dark border border-dark-border hover:border-secondary/50 rounded-2xl p-6 transition-all duration-300">
+            <img src="324.png" alt="MindBloom v1.0.2 - Relax Mode Gameplay"
+              class="rounded-xl shadow-2xl mx-auto mb-4 w-full max-w-[320px] object-contain">
+            <h4 class="font-heading font-semibold text-lg mb-2 text-center">🧘 Relax Mode</h4>
+            <p class="text-gray-400 text-sm text-center">No timer, free hints, soothing background music</p>
+          </div>
+
+          <!-- Screenshot 3 - Variant Select -->
+          <div
+            class="bg-dark border border-dark-border hover:border-primary/50 rounded-2xl p-6 transition-all duration-300">
+            <img src="325.png" alt="MindBloom v1.0.2 - Sudoku Variants Selection"
+              class="rounded-xl shadow-2xl mx-auto mb-4 w-full max-w-[320px] object-contain">
+            <h4 class="font-heading font-semibold text-lg mb-2 text-center">🎮 Sudoku Variants</h4>
+            <p class="text-gray-400 text-sm text-center">Staker-exclusive variant modes. Diagonal now available!</p>
+          </div>
+
+          <!-- Screenshot 4 - Diagonal Game (Highlighted) -->
+          <div
+            class="bg-gradient-to-br from-primary/10 to-secondary/10 border-2 border-primary/60 rounded-2xl p-6 glow-primary">
+            <img src="326.png" alt="MindBloom v1.0.2 - Diagonal Sudoku Gameplay"
+              class="rounded-xl shadow-2xl mx-auto mb-4 w-full max-w-[320px] object-contain">
+            <h4 class="font-heading font-semibold text-lg mb-2 text-center text-primary">⭐ Diagonal Sudoku</h4>
+            <p class="text-gray-400 text-sm text-center">Purple diagonal X-pattern with full hint system</p>
           </div>
         </div>
 
         <!-- Features List -->
-        <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <div class="flex flex-wrap justify-center gap-4">
+          <div class="flex items-center gap-2 bg-dark-card border border-primary/30 px-4 py-2 rounded-full">
+            <span class="text-primary">🎯</span>
+            <span class="text-gray-300 text-sm">Diagonal Sudoku</span>
+          </div>
+          <div class="flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full">
+            <span class="text-secondary">🧘</span>
+            <span class="text-gray-300 text-sm">Relax Mode</span>
+          </div>
           <div class="flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full">
             <span class="text-secondary">🎵</span>
             <span class="text-gray-300 text-sm">Background Music</span>
           </div>
           <div class="flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full">
-            <span class="text-secondary">⏱️</span>
-            <span class="text-gray-300 text-sm">No Timer</span>
+            <span class="text-warning">💡</span>
+            <span class="text-gray-300 text-sm">Hint System</span>
           </div>
           <div class="flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full">
-            <span class="text-secondary">💡</span>
-            <span class="text-gray-300 text-sm">Free Hints</span>
-          </div>
-          <div class="flex items-center gap-2 bg-dark-card border border-dark-border px-4 py-2 rounded-full">
-            <span class="text-secondary">📊</span>
-            <span class="text-gray-300 text-sm">No Stats Tracking</span>
+            <span class="text-secondary">✅</span>
+            <span class="text-gray-300 text-sm">Auto Staker Detection</span>
           </div>
         </div>
       </div>
