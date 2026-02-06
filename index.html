@@ -846,43 +846,107 @@
           </p>
         </div>
 
-        <!-- Screenshots Grid - 2x2 Large Layout -->
-        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
-          <!-- Screenshot 1 - Home Screen -->
-          <div
-            class="bg-dark border border-dark-border hover:border-secondary/50 rounded-2xl p-6 transition-all duration-300">
-            <img src="323.png" alt="MindBloom v1.0.2 - Home Screen with Variants"
-              class="rounded-xl shadow-2xl mx-auto mb-4 w-full max-w-[320px] object-contain">
-            <h4 class="font-heading font-semibold text-lg mb-2 text-center">🏠 New Home Screen</h4>
-            <p class="text-gray-400 text-sm text-center">Relax Mode button + Variants entry card for $SKR Stakers</p>
+        <!-- Screenshots Carousel - Horizontal Scroll -->
+        <div class="relative mb-12">
+          <!-- Navigation Buttons (Desktop) -->
+          <button id="carouselPrev"
+            class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-dark-card/90 backdrop-blur border border-dark-border hover:border-primary rounded-full items-center justify-center text-gray-400 hover:text-primary transition-all duration-200 shadow-lg">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button id="carouselNext"
+            class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-dark-card/90 backdrop-blur border border-dark-border hover:border-primary rounded-full items-center justify-center text-gray-400 hover:text-primary transition-all duration-200 shadow-lg">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+
+          <!-- Scroll Container -->
+          <div id="screenshotCarousel" class="overflow-x-auto pb-4 -mx-4 px-4 snap-x snap-mandatory scroll-smooth"
+            style="scrollbar-width: none; -ms-overflow-style: none;">
+            <style>
+              .overflow-x-auto::-webkit-scrollbar {
+                display: none;
+              }
+            </style>
+            <div class="flex gap-6" style="width: max-content;">
+
+              <!-- Screenshot 1 - Home Screen -->
+              <div class="flex-shrink-0 w-[300px] sm:w-[340px] snap-center">
+                <div
+                  class="bg-dark border border-dark-border hover:border-secondary/50 rounded-2xl p-5 transition-all duration-300 h-full">
+                  <img src="323.png" alt="MindBloom v1.0.2 - Home Screen with Variants"
+                    class="rounded-xl shadow-2xl mx-auto mb-4 w-full h-[420px] object-contain bg-gray-900/50">
+                  <h4 class="font-heading font-semibold text-lg mb-2 text-center">🏠 New Home Screen</h4>
+                  <p class="text-gray-400 text-sm text-center">Relax Mode + Variants entry for Stakers</p>
+                </div>
+              </div>
+
+              <!-- Screenshot 2 - Relax Mode -->
+              <div class="flex-shrink-0 w-[300px] sm:w-[340px] snap-center">
+                <div
+                  class="bg-dark border border-dark-border hover:border-secondary/50 rounded-2xl p-5 transition-all duration-300 h-full">
+                  <img src="324.png" alt="MindBloom v1.0.2 - Relax Mode Gameplay"
+                    class="rounded-xl shadow-2xl mx-auto mb-4 w-full h-[420px] object-contain bg-gray-900/50">
+                  <h4 class="font-heading font-semibold text-lg mb-2 text-center">🧘 Relax Mode</h4>
+                  <p class="text-gray-400 text-sm text-center">No timer, free hints, background music</p>
+                </div>
+              </div>
+
+              <!-- Screenshot 3 - Variant Select -->
+              <div class="flex-shrink-0 w-[300px] sm:w-[340px] snap-center">
+                <div
+                  class="bg-dark border border-dark-border hover:border-primary/50 rounded-2xl p-5 transition-all duration-300 h-full">
+                  <img src="325.png" alt="MindBloom v1.0.2 - Sudoku Variants Selection"
+                    class="rounded-xl shadow-2xl mx-auto mb-4 w-full h-[420px] object-contain bg-gray-900/50">
+                  <h4 class="font-heading font-semibold text-lg mb-2 text-center">🎮 Sudoku Variants</h4>
+                  <p class="text-gray-400 text-sm text-center">Staker-exclusive variant modes</p>
+                </div>
+              </div>
+
+              <!-- Screenshot 4 - Diagonal Game (Highlighted) -->
+              <div class="flex-shrink-0 w-[300px] sm:w-[340px] snap-center">
+                <div
+                  class="bg-gradient-to-br from-primary/20 to-secondary/10 border-2 border-primary rounded-2xl p-5 glow-primary h-full">
+                  <img src="326.png" alt="MindBloom v1.0.2 - Diagonal Sudoku Gameplay"
+                    class="rounded-xl shadow-2xl mx-auto mb-4 w-full h-[420px] object-contain bg-gray-900/50">
+                  <h4 class="font-heading font-semibold text-lg mb-2 text-center text-primary">⭐ Diagonal Sudoku</h4>
+                  <p class="text-gray-400 text-sm text-center">Purple diagonal X-pattern with hints</p>
+                </div>
+              </div>
+
+            </div>
           </div>
 
-          <!-- Screenshot 2 - Relax Mode -->
-          <div
-            class="bg-dark border border-dark-border hover:border-secondary/50 rounded-2xl p-6 transition-all duration-300">
-            <img src="324.png" alt="MindBloom v1.0.2 - Relax Mode Gameplay"
-              class="rounded-xl shadow-2xl mx-auto mb-4 w-full max-w-[320px] object-contain">
-            <h4 class="font-heading font-semibold text-lg mb-2 text-center">🧘 Relax Mode</h4>
-            <p class="text-gray-400 text-sm text-center">No timer, free hints, soothing background music</p>
+          <!-- Scroll Hint (Mobile) -->
+          <div class="flex md:hidden justify-center items-center gap-2 mt-4 text-gray-500 text-sm">
+            <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+            </svg>
+            <span>Swipe to explore</span>
+            <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
           </div>
 
-          <!-- Screenshot 3 - Variant Select -->
-          <div
-            class="bg-dark border border-dark-border hover:border-primary/50 rounded-2xl p-6 transition-all duration-300">
-            <img src="325.png" alt="MindBloom v1.0.2 - Sudoku Variants Selection"
-              class="rounded-xl shadow-2xl mx-auto mb-4 w-full max-w-[320px] object-contain">
-            <h4 class="font-heading font-semibold text-lg mb-2 text-center">🎮 Sudoku Variants</h4>
-            <p class="text-gray-400 text-sm text-center">Staker-exclusive variant modes. Diagonal now available!</p>
-          </div>
+          <!-- Carousel Navigation Script -->
+          <script>
+              (function () {
+                const carousel = document.getElementById('screenshotCarousel');
+                const prevBtn = document.getElementById('carouselPrev');
+                const nextBtn = document.getElementById('carouselNext');
+                const scrollAmount = 360;
 
-          <!-- Screenshot 4 - Diagonal Game (Highlighted) -->
-          <div
-            class="bg-gradient-to-br from-primary/10 to-secondary/10 border-2 border-primary/60 rounded-2xl p-6 glow-primary">
-            <img src="326.png" alt="MindBloom v1.0.2 - Diagonal Sudoku Gameplay"
-              class="rounded-xl shadow-2xl mx-auto mb-4 w-full max-w-[320px] object-contain">
-            <h4 class="font-heading font-semibold text-lg mb-2 text-center text-primary">⭐ Diagonal Sudoku</h4>
-            <p class="text-gray-400 text-sm text-center">Purple diagonal X-pattern with full hint system</p>
-          </div>
+                prevBtn.addEventListener('click', () => {
+                  carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                });
+
+                nextBtn.addEventListener('click', () => {
+                  carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                });
+              })();
+          </script>
         </div>
 
         <!-- Features List -->
